@@ -1,0 +1,17 @@
++-----------------------------------+
+|                                   |
+| The Tablet Of Mystical Guidence   |
+|       Installation guide          |
+|                                   |
+|     $ gcc coordinate*.c -lm       |
+|     $ a.out                       |
+|                                   |
+|      also make shure you have     |
+|      unix headers:                |
+|        <stdio.h>                  |
+|        <termios.h>                |
+|        <unistd.h>                 |
+|        <math.h>                   |
+|                                   |
++-----------------------------------+
+
