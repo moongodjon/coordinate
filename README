@@ -1,26 +1,16 @@
 +-----------------------------------+
 |                                   |
-<<<<<<< HEAD
-| The Tablet Of Mystical Guidence   |
-=======
 | The Tablet Of Mystical Guidance   |
->>>>>>> 96019ce2f1a82812acf1d700ea0111d47163fa30
 |       Installation guide          |
 |                                   |
 |     $ gcc coordinate*.c -lm       |
 |     $ a.out                       |
 |                                   |
-<<<<<<< HEAD
-|      also make shure you have     |
-|      unix headers:                |
-=======
 |      also make sure you have      |
 |      Unix headers:                |
->>>>>>> 96019ce2f1a82812acf1d700ea0111d47163fa30
 |        <stdio.h>                  |
 |        <termios.h>                |
 |        <unistd.h>                 |
 |        <math.h>                   |
 |                                   |
 +-----------------------------------+
-
