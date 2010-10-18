@@ -98,7 +98,7 @@ int main(void)
            "   An elegant glass box materializes out of the mist,\n"
            "it has a height twice its length and width,\n"
            "I wonder if I should go inside, Do I? ",
-           "I decide not to enter the box.");
+           "\nI decide not to enter the box.");
 
          /*switches&effects*/
 
@@ -143,8 +143,8 @@ int main(void)
          block(2,2,11,14,wall);
          block(6,6,11,14,wall);
          block(3,5,14,14,wall);
-         block(1,3,8, 10,"you hit a tube");
-         block(5,7,8, 10,"you hit a tube");
+         block(1,3,8, 10,"   I see a large tube,\nit looks exactly like the tube to my left.");
+         block(5,7,8, 10,"   I see a large tube,\nit looks exactly like the tube to my right.");
          block(0,0,0, 8 ,wall);
          block(8,8,0, 8 ,wall);
          block(0,8,0, 0 ,wall);
@@ -154,8 +154,10 @@ int main(void)
          block(2,2,4, 4 ,pillar);
 
          elev(4,12,6,3,0,
-           "I see an elevator, enter? ",
-           "I don\'t enter.");
+           "   I see another glass box,\n"
+           "it has a similar shape and composition to the one in the first room,\n"
+           "should I enter? ",
+           "\nI salute the box and continue on my way.");
 
          /*switches&effects*/
 
