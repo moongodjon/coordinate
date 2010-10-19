@@ -61,7 +61,7 @@ char map2[19][19] =
    "       |   |       ",
    "       | E |       ",
    "       |   |       ",
-   "       +---+       "};
+   "       |   |       "};
 
 
 int main(void)
@@ -231,7 +231,8 @@ int main(void)
          block(18,18,7 ,11,wall);
          block(13,19,5 ,7 ,wall);
          block(11,13,0 ,5 ,wall);
-         felev(7, 11,18,18,4,4,0);
+         
+         felev(7, 11,19,19,4,4,0);
          
          /*switches&effects*/
          lvr(1,9,11,"I see a lever, do I pull it? ","I pull the lever",
