@@ -225,15 +225,14 @@ int main(void)
          block(0 ,0 ,7 ,11,wall);
          block(0 ,5 ,11,13,wall);
          block(5 ,7 ,13,18,wall);
-         block(7 ,11,18,18,wall);
+         //block(7 ,11,18,18,wall);
          block(11,13,13,18,wall);
          block(13,18,11,13,wall);
          block(18,18,7 ,11,wall);
          block(13,19,5 ,7 ,wall);
          block(11,13,0 ,5 ,wall);
-
-         //...cont. in book... no longer
-
+         felev(7, 11,18,18,4,4,0);
+         
          /*switches&effects*/
          lvr(1,9,11,"I see a lever, do I pull it? ","I pull the lever",
          "I already pulled the lever");
@@ -251,6 +250,7 @@ int main(void)
          /*-map&coordinates-*/
          showmap(19,19,4,map2);
          printf("%i,%i,%i\n",x,y,z);
+         
 
       }
    }

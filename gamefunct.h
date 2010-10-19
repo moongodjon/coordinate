@@ -72,7 +72,7 @@ void takeinp(void)
       if (inph == 'h' || inph == 'H')
       {  
          int i; for(i=0; i!=60; i++) printf("\n");
-	 printf("This Tablet has been brought to you by Hammerspace®\n"
+         printf("This Tablet has been brought to you by Hammerspace®\n"
                 "+-----------------------------------+\n"
                 "|                                   |\n"
                 "|           The Tablet              |\n"
@@ -89,13 +89,11 @@ void takeinp(void)
                 "|        Type Q to killall          |\n"
                 "|                                   |\n"
                 "+-----------------------------------+\n");getch();
-          printf("* Not a real trademark");
+         printf("* Not a real trademark");
       }
    }
 }
 void showmap(int w, int h, int dis, char map[w][h])
-// h,w/ x,y placements confuse me, best not meddled with ;)
-// h should be w and visaversa
 {  
    int hp,wp; //variables to show position in map.
 
@@ -133,6 +131,20 @@ void rmsg(char msg[])
 {  
    if(showmsg==1)
      {printf("%s",msg); showmsg=0;getch();}
+}
+void felev(int lx, int rx, int ty, int by, int gx, int gy, int gz)
+{  
+   if( x>=lx && x<=rx && y>=ty && y<=by )
+   {  
+      printf("Do I walk into the next room? ") ;
+      scanf ("%s", &inp ) ;		/* scan input onto &inp */
+
+      if(inp == 'y')
+        {y=gy ; x=gx ; z=gz ; showmsg=1; }
+      else 
+        {x=px; y=py;}
+   }
+
 }
 void elev (int lx, int ly, int tx, int ty, int tz, char msg[], char msgn[])
 {  
