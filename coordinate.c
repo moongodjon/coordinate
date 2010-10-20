@@ -43,23 +43,23 @@ char map1[15][9] =
    "  +---+  "};
 
 char map2[19][19] =
-  {"       +---+       ",
+  {"       |   |       ",
    "       |   |       ",
-   "       | E |       ",
+   "       |   |       ",
    "       |   |       ",
    "       |+-+|       ",
    "     +-+|X|+-+     ",
    "     |  +-+  |     ",
-   "+----+       +----+",
-   "|   +-+  E  +-+   |",
-   "| E |X|     |X| E |",
-   "|   +-+     +-+   |",
-   "+----+   L   +----+",
+   "-----+       +-----",
+   "    +-+  &  +-+    ",
+   "    |X|     |X|    ",
+   "    +-+     +-+    ",
+   "-----+   L   +-----",
    "     |  +-+  |     ",
    "     +-+|X|+-+     ",
    "       |+-+|       ",
    "       |   |       ",
-   "       | E |       ",
+   "       |   |       ",
    "       |   |       ",
    "       |   |       "};
 
@@ -165,8 +165,10 @@ int main(void)
          {  
             map1[4][4]='E';
             elev(4,4,9,9,2,
-              "I see an elevator, enter? ",
-              "I don\'t enter.");
+              "   I see that the complex geometric design that was here is now glowing blue,\n"
+              "It makes me think of a transportation device.\n"
+              "Should I stand on it? ",
+              "I stand clear of it.");
          }
          else
          {  
@@ -190,7 +192,8 @@ int main(void)
          takeinp();
          int i; for(i=0; i != 60; i++) printf("\n"); // clear screen
          rmsg(
-           "A voice echoes throught the room;\n\n"
+           "I seem to have been transported to another room.\n\n"
+           "A voice echoes throught before I get a feal for the room;\n\n"
 
            "  \"Welcome to the Infinite Cube,\n"
            "The Cube is a prototype in alternate-reality technology.\n"
@@ -216,23 +219,23 @@ int main(void)
 
          char wall[]=
           {"   I can't think of anything interesting to say about this wall,\n"
-           "...Infinite objects must be finite in interest.\n\n"
+           "...Infinite objects must be of finite interest.\n\n"
            "(That would also explain most of my boring one-liners!)" };
 
-         block(7 ,11,0 ,0, wall);
+         //block(7 ,11,0 ,0, wall);  // comented out room's sides.
          block(5 ,7 ,0 ,5 ,wall);
          block(0 ,5, 5, 7 ,wall);
-         block(0 ,0 ,7 ,11,wall);
+         //block(0 ,0 ,7 ,11,wall);
          block(0 ,5 ,11,13,wall);
          block(5 ,7 ,13,18,wall);
          //block(7 ,11,18,18,wall);
          block(11,13,13,18,wall);
          block(13,18,11,13,wall);
-         block(18,18,7 ,11,wall);
+         //block(18,18,7 ,11,wall);
          block(13,19,5 ,7 ,wall);
          block(11,13,0 ,5 ,wall);
          
-         felev(7, 11,19,19,4,4,0);
+         felev(7, 11,19,19,4,4,0); //botom side -> begining
          
          /*switches&effects*/
          lvr(1,9,11,"I see a lever, do I pull it? ","I pull the lever",
