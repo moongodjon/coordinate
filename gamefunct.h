@@ -22,8 +22,8 @@ int loop=1,                                //  //   ||
     px = 4,                            //   \______ global variable(s)
     z  = 0,                           //
 showmsg= 1;
-int sw[5]={0,0,0,0,0};
-
+int sw[10]={0,0,0,0,0,0,0,0,0,0};
+int inst[10]={0,0,0,0,0,0,0,0,0,0};
 int getch(void) // code snippet from kermie3 @ cprogramming.com
 {  
    struct termios oldt,
@@ -47,14 +47,33 @@ void takeinp(void)
 
    inp = getch(); //scan input onto &inp
 
-   if     ( inp == 'w' ) {--y;}
-   else if( inp == 'a' ) {--x;}
-   else if( inp == 's' ) {++y;}
-   else if( inp == 'd' ) {++x;}
-   else if( inp == 'Q' || inp == 'q') {loop = 0;}
-   else if( inp == 'h' || inp == 'H')
-   {  
-      printf("A beam of light descends from above,\n"
+//   if     ( inp == 'w' ) {--y;} //it would be more convenient to have this be a switch-case block
+//   else if( inp == 'a' ) {--x;} //but i'm to lazy to re-write
+//   else if( inp == 's' ) {++y;}
+//   else if( inp == 'd' ) {++x;}
+//   else if( inp == 'Q' ) {loop = 0;}
+//   else if( inp == 'h' || inp == 'H')
+//   {  
+     switch(inp)
+     {
+        case 'w':
+        case 'k':
+        y--;break;
+        case 'a':
+        case 'h':
+        x--;break;
+        case 's':
+        case 'j':
+        y++;break;
+        case 'd':
+        case 'l':
+        x++;break;
+        case 'Q':
+        loop--;break;
+        case 'H':
+        case '/':
+        case '?':
+        printf("A beam of light descends from above,\n"
              "bearing in it this tablet:\n"
 
              "+-----------------------------------+\n"
@@ -68,11 +87,11 @@ void takeinp(void)
              "|                                   |\n"
              "|                                   |\n"
              "+-----------------------------------+\n\a");
-      int inph = getch();
-      if (inph == 'h' || inph == 'H')
-      {  
-         int i; for(i=0; i!=60; i++) printf("\n");
-         printf("This Tablet has been brought to you by Hammerspace®\n"
+        int inph = getch();
+        if (inph == 'h' || inph == 'H')
+        {  
+           int i; for(i=0; i!=60; i++) printf("\n");
+           printf("This Tablet has been brought to you by Hammerspace®\n"
                 "+-----------------------------------+\n"
                 "|                                   |\n"
                 "|           The Tablet              |\n"
@@ -81,17 +100,17 @@ void takeinp(void)
                 "|                                   |\n"
                 "|  Now with 50 per¢ more Guidence   |\n"
                 "|                                   |\n"
+                "|              movement:            |\n"
+                "|            w          k           |\n"
+                "|          a s d  or  h j l,        |\n"
                 "|                                   |\n"
-                "|               w                   |\n"
-                "|       Type  a s d  to move        |\n"
+                "|               Quit: Q             |\n"
                 "|                                   |\n"
-                "|                                   |\n"
-                "|        Type Q to killall          |\n"
                 "|                                   |\n"
                 "+-----------------------------------+\n");getch();
-         printf("* Not a real trademark");
-      }
-   }
+           printf("* Not a real trademark");
+       }
+      }   
 }
 void showmap(int w, int h, int dis, char map[w][h])
 {  
@@ -103,9 +122,46 @@ void showmap(int w, int h, int dis, char map[w][h])
       {  
          int rdis = (hp-x)*(hp-x)+(wp-y)*(wp-y);
          if(wp == y && hp==x)
-           {printf("A ");}
+           {printf("[0;32;40mA [0;37;40m");}
          else if( sqrt(rdis) <= dis)
-           {printf("%c ",map[wp][hp]);}
+           {/*change the color for spacific charecters & print them*/
+   
+           if      (map[wp][hp]=='E')//blue
+             {printf("[0;34;40mE [0;37;40m");}
+   
+           else  if(map[wp][hp]=='*')//red
+             {printf("[0;31;40m* [0;37;40m");}
+               
+           else  if(map[wp][hp]=='|')//yellow+
+             {printf("[1;33;40m| [0;37;40m");}   
+          
+           else  if(map[wp][hp]=='-')//yellow+
+             {printf("[1;33;40m- [0;37;40m");}   
+          
+           else  if(map[wp][hp]=='+')//yellow+
+             {printf("[1;33;40m+ [0;37;40m");}   
+          
+           else  if(map[wp][hp]=='x')//yellow+
+             {printf("[1;33;40mx [0;37;40m");}   
+                     
+           else  if(map[wp][hp]=='R')//red orb
+             {printf("[0;31;40mO [0;37;40m");}   
+          
+           else  if(map[wp][hp]=='G')//green orb
+             {printf("[0;32;40mO [0;37;40m");}   
+ 
+           else  if(map[wp][hp]=='B')//blue orb
+             {printf("[0;34;40mO [0;37;40m");}   
+ 
+           else  if(map[wp][hp]=='M')//magenta orb/
+             {printf("[0;35;40mX [0;37;40m");}  
+
+           else  if(map[wp][hp]=='P')//hot pink orb/
+             {printf("[1;35;40mO [0;37;40m");}  
+           
+           else
+             {printf("%c ",map[wp][hp]);}
+           }
    	 else
            {printf("  ");}
       }
@@ -116,6 +172,20 @@ void block(int lx, int rx, int ty, int by, char msg[])
 {  
    if( x>=lx && x<=rx && y>=ty && y<=by )
      {y=py; x=px; printf("%s\n\a",msg);}
+}
+void unmove(int w, int h, char map[w][h]) // why didn't I think of this BEFORE block()???
+{
+   switch(map[y][x])
+   {
+      case '|':
+      case '-':
+      case '+':
+      case 'x':
+      y=py;
+      x=px;
+      printf("The wall message disables for the programmers' convenience.\n\a");
+      break;
+   }
 }
 void room (int lx, int rx, int ty, int by, char msg[])
 {  
@@ -169,7 +239,7 @@ void lvr(int s, int lx, int ly, char msg0[], char msgy[], char msg1[])
            printf("%s",msg0);
            scanf ("%s",&inp);
            if(inp=='y')
-             {sw[s]=1;printf("\a%s", msgy);takeinp();}
+             {sw[s]=1;inst[s]=1;printf("\a%s", msgy);takeinp();}
            else
              {takeinp();}
       }
